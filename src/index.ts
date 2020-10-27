@@ -9,6 +9,8 @@ interface Point {
   y: number
 }
 
+type nullable_number = number | null
+
 /**
  * Calculate trapezoid area between two points
  *
@@ -30,18 +32,21 @@ export function trapezoid(p1: Point, p2: Point): number {
  * @param bucket_size_minutes size of the bucket in minutes
  */
 export function energy_sum(
-  series: number[],
+  series: nullable_number[],
   bucket_size_minutes: number,
 ): number {
   const number_intervals = series.length
   const interval_size = bucket_size_minutes / number_intervals
+
+  // zero series
+  const series_nulled: number[] = series.map((i) => (i ? i : 0))
 
   const y_series = Array.from(
     new Array(number_intervals),
     (element, index) => index * interval_size,
   )
 
-  const series_points: Point[] = series
+  const series_points: Point[] = series_nulled
     .map((x, i) => ({
       x,
       y: y_series[i],

@@ -26,3 +26,13 @@ describe("One day 5 minute interval tests", () => {
     expect(variation_p).toBeLessThan(0.2)
   })
 })
+
+describe("test null value in series", () => {
+  const series = [1, null, 1]
+
+  it("should calculate the correct trapezoid", () => {
+    const result = energy_sum(series, 60)
+
+    expect(result).toBe(1 / 3)
+  })
+})
