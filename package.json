@@ -12,6 +12,7 @@
   "sideEffects": false,
   "main": "dist/",
   "module": "lib/",
+  "types": "dist/library.d.ts",
   "files": [
     "dist/",
     "lib/",
@@ -19,26 +20,19 @@
     "README.md"
   ],
   "scripts": {
-    "build": "babel lib/ -d dist/ --source-maps --ignore '**/*.test.js' --delete-dir-on-start",
-    "format": "prettier --write '**/*.*' && eslint . --fix",
+    "build": "rollup -c rollup.config.ts",
+    "configure-gpr": "node ./set-registry.js -s https://npm.pkg.github.com",
+    "configure-npm": "node ./set-registry.js -s https://registry.npmjs.org",
+    "format": "prettier --write '**/*.*' && eslint . --fix --ext .ts",
     "lint": "prettier --check '**/*.*' && eslint .",
-    "prepare": "yarn build",
     "semantic-release": "semantic-release",
-    "test": "jest --coverage && yarn lint"
-  },
-  "babel": {
-    "presets": [
-      [
-        "@babel/preset-env",
-        {
-          "targets": {
-            "node": "12"
-          }
-        }
-      ]
-    ]
+    "test": "jest --coverage && yarn lint",
+    "watch": "rollup -cw rollup.config.ts"
   },
   "prettier": {
+    "semi": false,
+    "singleQuote": false,
+    "tabWidth": 2,
     "trailingComma": "all"
   },
   "eslintConfig": {
@@ -47,13 +41,14 @@
       "jest": true,
       "node": true
     },
-    "parser": "babel-eslint",
-    "parserOptions": {
-      "ecmaVersion": 2019,
-      "sourceType": "module"
-    },
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+      "@typescript-eslint"
+    ],
     "extends": [
       "eslint:recommended",
+      "plugin:@typescript-eslint/eslint-recommended",
+      "plugin:@typescript-eslint/recommended",
       "plugin:jest/recommended",
       "plugin:import/recommended"
     ],
@@ -74,22 +69,32 @@
   "jest": {},
   "dependencies": {},
   "devDependencies": {
-    "@babel/cli": "7.12.1",
-    "@babel/core": "7.12.3",
-    "@babel/preset-env": "7.12.1",
+    "@lopatnov/rollup-plugin-uglify": "^2.1.0",
     "@types/jest": "26.0.15",
-    "babel-eslint": "10.1.0",
-    "babel-jest": "26.5.2",
+    "@types/typescript": "^2.0.0",
+    "@typescript-eslint/eslint-plugin": "^4.6.0",
+    "@typescript-eslint/parser": "^4.6.0",
     "eslint": "7.12.0",
     "eslint-plugin-import": "2.22.1",
     "eslint-plugin-jest": "24.1.0",
     "jest": "26.5.3",
+    "jest-config": "^26.2.2",
     "jest-date-mock": "1.0.8",
     "prettier": "2.1.2",
     "prettier-plugin-packagejson": "2.2.7",
+    "rollup": "^2.23.1",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-json": "^4.0.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-sourcemaps": "^0.6.2",
+    "rollup-plugin-typescript2": "^0.27.2",
     "semantic-release": "17.2.1",
-    "semantic-release-cli": "5.4.0"
+    "semantic-release-cli": "5.4.0",
+    "terser": "^5.0.0",
+    "ts-jest": "^26.1.4",
+    "typescript": "^3.9.7"
   },
+  "libraryFile": "library",
   "renovate": {
     "extends": [
       "config:js-lib",
@@ -101,5 +106,6 @@
       ":automergeTesters",
       ":automergeTypes"
     ]
-  }
+  },
+  "umdName": "sampleLibrary"
 }
