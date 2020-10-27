@@ -102,3 +102,13 @@ describe("test three values in series floats", () => {
     expect(result).toBe(1)
   })
 })
+
+describe("test negative value in series floats", () => {
+  const series = [2.0, -1.0, 2.0]
+
+  it("should calculate the correct trapezoid", () => {
+    const result = energy_sum(series, 60)
+
+    expect(result).toBe(1 / 3)
+  })
+})
