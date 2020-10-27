@@ -4,6 +4,8 @@
  *
  */
 
+const MAX_INTERVALS = Number.MAX_SAFE_INTEGER - 1
+
 interface Point {
   x: number
   y: number
@@ -40,6 +42,21 @@ export function energy_sum(
 
   if (series.length < 1) {
     throw Error(`Require at least one value in series`)
+  }
+
+  if (
+    bucket_size_minutes < 0 ||
+    bucket_size_minutes > Number.MAX_SAFE_INTEGER - 1
+  ) {
+    throw Error(`Invalid bucket size`)
+  }
+
+  if (interval_size % 1 !== 0) {
+    throw Error(`Not a round interval size in minutes`)
+  }
+
+  if (number_intervals < 0 || number_intervals > MAX_INTERVALS) {
+    throw Error(`Too many intervals`)
   }
 
   // zero series

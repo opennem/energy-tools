@@ -1,3 +1,4 @@
+/* eslint-disable arrow-body-style */
 /* eslint-disable import/no-unresolved */
 import { energy_sum } from "../src/index"
 
@@ -5,6 +6,26 @@ import coal_black_1_day from "./coal_black_1_day.json"
 import battery_charging_1_day from "./battery_charging_1_day.json"
 
 const MINUTES_IN_DAY = 1440
+
+describe("test errors and ranges", () => {
+  it("should throw an error on bad series", () => {
+    const result = () => energy_sum([], 60)
+
+    expect(result).toThrow(Error)
+  })
+
+  it("should throw an error on bad interval", () => {
+    const result = () => energy_sum([1, 1, 1], 60.5)
+
+    expect(result).toThrow(Error)
+  })
+
+  it("should throw an error on bad interval size", () => {
+    const result = () => energy_sum([1, 1, 1], 55)
+
+    expect(result).toThrow(Error)
+  })
+})
 
 describe("Base tests", () => {
   it("should create and return a float", () => {
