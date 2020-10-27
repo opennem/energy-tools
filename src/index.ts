@@ -37,8 +37,8 @@ export function energy_sum(
   series: nullable_number[],
   bucket_size_minutes: number,
 ): number {
-  const number_intervals = series.length
-  const interval_size = bucket_size_minutes / number_intervals
+  const number_intervals = series.length - 1
+  const interval_size = bucket_size_minutes / series.length
 
   if (series.length < 1) {
     throw Error(`Require at least one value in series`)
@@ -63,7 +63,7 @@ export function energy_sum(
   const series_nulled: number[] = series.map((i) => (i ? i : 0))
 
   const y_series = Array.from(
-    new Array(number_intervals),
+    new Array(series.length),
     (element, index) => index * interval_size,
   )
 
@@ -78,8 +78,8 @@ export function energy_sum(
     p1,
     p2
 
-  if (number_intervals >= 2) {
-    for (let i = 0; i < number_intervals - 1; i++) {
+  if (number_intervals > 0) {
+    for (let i = 0; i < number_intervals; i++) {
       p1 = series_points[i]
       p2 = series_points[i + 1]
 
