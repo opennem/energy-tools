@@ -89,12 +89,12 @@
     "rollup-plugin-json": "^4.0.0",
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-sourcemaps": "^0.6.2",
-    "rollup-plugin-typescript2": "^0.27.2",
+    "rollup-plugin-typescript2": "^0.28.0",
     "semantic-release": "17.2.1",
     "semantic-release-cli": "5.4.0",
     "terser": "^5.0.0",
     "ts-jest": "^26.1.4",
-    "typescript": "^3.9.7"
+    "typescript": "^4.0.5"
   },
   "libraryFile": "index",
   "renovate": {
