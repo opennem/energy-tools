@@ -1,6 +1,7 @@
 import { energy_sum } from "../src/index"
 
 import coal_black_1_day from "./coal_black_1_day.json"
+import battery_charging_1_day from "./battery_charging_1_day.json"
 
 const MINUTES_IN_DAY = 1440
 
@@ -20,6 +21,21 @@ describe("One day 5 minute interval tests", () => {
   it("should a number that is close to correct", () => {
     const energy_value = energy_sum(coal_black_1_day, MINUTES_IN_DAY)
     const actual_value = 248.88 * 1000
+    const variation_p = (energy_value - actual_value) / actual_value
+
+    expect(typeof energy_value).toBe("number")
+    expect(variation_p).toBeLessThan(0.2)
+  })
+})
+
+describe("One day 5 minute interval battery charging (negative) tests", () => {
+  it("should return the right number of intervals", () => {
+    expect(battery_charging_1_day.length).toBe(288)
+  })
+
+  it("should a number that is close to correct", () => {
+    const energy_value = energy_sum(battery_charging_1_day, MINUTES_IN_DAY)
+    const actual_value = -0.21 * 1000
     const variation_p = (energy_value - actual_value) / actual_value
 
     expect(typeof energy_value).toBe("number")
