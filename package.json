@@ -1,6 +1,6 @@
 {
   "name": "@opennem/energy-functions",
-  "version": "0.0.0-development",
+  "version": "0.0.1",
   "private": false,
   "description": "OpenNEM energy functions in Javascript",
   "repository": {
@@ -10,9 +10,9 @@
   "license": "MIT",
   "author": "Nik Cubrilovic <git@nikcub.me>",
   "sideEffects": false,
-  "main": "dist/",
-  "module": "lib/",
-  "types": "dist/library.d.ts",
+  "main": "dist/opennem-energy-tools.js",
+  "module": "dist/opennem-energy-tools.es.js",
+  "types": "dist/opennem-energy-tools.d.ts",
   "files": [
     "dist/",
     "lib/",
@@ -96,7 +96,7 @@
     "ts-jest": "^26.1.4",
     "typescript": "^3.9.7"
   },
-  "libraryFile": "library",
+  "libraryFile": "index",
   "renovate": {
     "extends": [
       "config:js-lib",
@@ -109,5 +109,5 @@
       ":automergeTypes"
     ]
   },
-  "umdName": "sampleLibrary"
+  "umdName": "energyTools"
 }

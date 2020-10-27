@@ -1,4 +1,4 @@
-import { trapezoid } from "../lib"
+import { trapezoid } from "../src"
 
 describe("test trapezoid simple two points square", () => {
   const points = [
