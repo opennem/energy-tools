@@ -11,6 +11,8 @@ interface Point {
   y: number
 }
 
+type LogAlgorithmFunction = (p1: Point, p2: Point) => number
+
 type nullable_number = number | null
 
 /**
@@ -36,6 +38,7 @@ export function trapezoid(p1: Point, p2: Point): number {
 export function energy_sum(
   series: nullable_number[],
   bucket_size_minutes: number,
+  calc_algorithm: LogAlgorithmFunction = trapezoid,
 ): number {
   const number_intervals = series.length - 1
   const interval_size = bucket_size_minutes / series.length
@@ -84,7 +87,7 @@ export function energy_sum(
       p2 = series_points[i + 1]
 
       // @NOTE eventually support variable interval sizes
-      area += trapezoid(p1, p2)
+      area += calc_algorithm(p1, p2)
     }
   }
   // convert back to hours
