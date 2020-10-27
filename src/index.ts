@@ -38,6 +38,10 @@ export function energy_sum(
   const number_intervals = series.length
   const interval_size = bucket_size_minutes / number_intervals
 
+  if (series.length < 1) {
+    throw Error(`Require at least one value in series`)
+  }
+
   // zero series
   const series_nulled: number[] = series.map((i) => (i ? i : 0))
 
