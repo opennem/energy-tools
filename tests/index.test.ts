@@ -53,3 +53,33 @@ describe("test null value in series", () => {
     expect(result).toBe(1 / 3)
   })
 })
+
+describe("test two values in series", () => {
+  const series = [1, 2]
+
+  it("should calculate the correct trapezoid", () => {
+    const result = energy_sum(series, 60)
+
+    expect(result).toBe(0.75)
+  })
+})
+
+describe("test two values in series simple", () => {
+  const series = [1, 1, 1]
+
+  it("should calculate the correct trapezoid", () => {
+    const result = energy_sum(series, 60)
+
+    expect(result).toBe((1 / 3) * 2)
+  })
+})
+
+describe("test three values in series floats", () => {
+  const series = [1.0, 2.0, 1.0]
+
+  it("should calculate the correct trapezoid", () => {
+    const result = energy_sum(series, 60)
+
+    expect(result).toBe(1)
+  })
+})
