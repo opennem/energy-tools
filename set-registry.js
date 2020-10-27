@@ -1,4 +1,4 @@
-var fs = require("fs")
+import fs from "fs"
 var pkg = JSON.parse(fs.readFileSync("package.json", "utf8"))
 var registry = null
 

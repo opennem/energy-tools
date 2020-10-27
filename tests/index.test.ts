@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 import { energy_sum } from "../src/index"
 
 import coal_black_1_day from "./coal_black_1_day.json"

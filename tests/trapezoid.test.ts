@@ -1,4 +1,5 @@
-import { trapezoid } from "../src"
+/* eslint-disable import/no-unresolved */
+import { trapezoid } from "./../src/"
 
 describe("test trapezoid simple two points square", () => {
   const points = [
