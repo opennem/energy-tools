@@ -7,7 +7,7 @@ import battery_charging_1_day from "./battery_charging_1_day.json"
 
 const MINUTES_IN_DAY = 1440
 
-describe("test errors and ranges", () => {
+describe("test errors and ranges and return types", () => {
   it("should throw an error on bad series", () => {
     const result = () => energy_sum([], 60)
 
@@ -25,9 +25,7 @@ describe("test errors and ranges", () => {
 
     expect(result).toThrow(Error)
   })
-})
 
-describe("Base tests", () => {
   it("should create and return a float", () => {
     const energy_result = energy_sum([0], 5)
 
@@ -35,7 +33,7 @@ describe("Base tests", () => {
   })
 })
 
-describe("One day 5 minute interval tests", () => {
+describe("test coal_black values in day series", () => {
   it("should return the right number of intervals", () => {
     expect(coal_black_1_day.length).toBe(288)
   })
@@ -50,7 +48,7 @@ describe("One day 5 minute interval tests", () => {
   })
 })
 
-describe("One day 5 minute interval battery charging (negative) tests", () => {
+describe("test battery values in day series (negative)", () => {
   it("should return the right number of intervals", () => {
     expect(battery_charging_1_day.length).toBe(288)
   })
