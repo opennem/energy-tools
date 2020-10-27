@@ -57,7 +57,7 @@ export function energy_sum(
     p1,
     p2
 
-  if (number_intervals > 2) {
+  if (number_intervals >= 2) {
     for (let i = 0; i < number_intervals - 1; i++) {
       p1 = series_points[i]
       p2 = series_points[i + 1]
@@ -66,7 +66,6 @@ export function energy_sum(
       area += trapezoid(p1, p2)
     }
   }
-
   // convert back to hours
   area = area / 60
 
