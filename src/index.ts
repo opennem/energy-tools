@@ -65,6 +65,7 @@ export function energy_sum(
   // zero series
   const series_nulled: number[] = series.map((i) => (i ? i : 0))
 
+  // assume fixed interval widths for this series
   const y_series = Array.from(
     new Array(series.length),
     (element, index) => index * interval_size,
