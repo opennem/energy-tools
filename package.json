@@ -1,11 +1,12 @@
 {
-  "name": "@opennem/energy-functions",
+  "name": "@opennem/energy-tools",
   "version": "0.0.3",
   "private": false,
   "description": "OpenNEM energy functions in Javascript",
+  "homepage": "https://github.com/opennem/energy-tools",
   "repository": {
     "type": "git",
-    "url": "https://github.com/opennem/energy-functions.git"
+    "url": "https://github.com/opennem/energy-tools"
   },
   "license": "MIT",
   "author": "Nik Cubrilovic <git@nikcub.me>",
