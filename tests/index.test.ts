@@ -4,6 +4,8 @@ import { energy_sum } from "../src/index"
 
 import coal_black_1_day from "./coal_black_1_day.json"
 import battery_charging_1_day from "./battery_charging_1_day.json"
+import oct_23_rooftop from "./23_oct_rooftop.json"
+import oct_23_wem_gas from "./23_oct_wem_gas.json"
 
 const MINUTES_IN_DAY = 1440
 
@@ -44,6 +46,38 @@ describe("test coal_black values in day series", () => {
     const variation_p = (energy_value - actual_value) / actual_value
 
     expect(typeof energy_value).toBe("number")
+    expect(variation_p).toBeLessThan(0.2)
+  })
+})
+
+describe("test real 23 oct rooftop values", () => {
+  it("should have 48 intervals", () => {
+    expect(oct_23_rooftop.length).toBe(48)
+  })
+
+  it("should return a value that is expected", () => {
+    const energy_value = energy_sum(oct_23_rooftop, MINUTES_IN_DAY)
+    const actual_value = 9059.75
+    const variation_p = (energy_value - actual_value) / actual_value
+
+    expect(typeof energy_value).toBe("number")
+    expect(energy_value).toBe(actual_value)
+    expect(variation_p).toBeLessThan(0.2)
+  })
+})
+
+describe("test real 23 oct gas values", () => {
+  it("should have 48 intervals", () => {
+    expect(oct_23_wem_gas.length).toBe(48)
+  })
+
+  it("should return a value that is expected", () => {
+    const energy_value = energy_sum(oct_23_wem_gas, MINUTES_IN_DAY)
+    const actual_value = 10265.32
+    const variation_p = (energy_value - actual_value) / actual_value
+
+    expect(typeof energy_value).toBe("number")
+    expect(energy_value).toBe(actual_value)
     expect(variation_p).toBeLessThan(0.2)
   })
 })
